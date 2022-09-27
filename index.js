@@ -24,6 +24,9 @@ app.get("/", (req, res) =>{
 app.use("/racers", (req, res) =>{
     res.render("racers")
 })
+app.use("/teams", (req, res) =>{
+    res.render("teams")
+})
 
 app.use("/users", require("./routes/Routes.js"))
 

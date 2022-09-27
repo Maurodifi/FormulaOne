@@ -1,7 +1,9 @@
 const racers = (req, res) => {
     res.render("racers")
 };
-
+const teams = (req, res) => {
+  res.render("teams")
+};
 //mostrar form de login
 function getLoginForm(req, res, next) {
     res.render("loginForm")
@@ -58,4 +60,4 @@ function logout(req, res) {
     req.session.destroy()
     res.redirect("/");
 }
-module.exports = {racers, sendLoginForm, getRegisterForm, sendRegisterForm, logout, getLoginForm};
+module.exports = {racers, sendLoginForm, getRegisterForm, sendRegisterForm, logout, getLoginForm, teams};
