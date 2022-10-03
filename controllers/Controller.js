@@ -1,3 +1,6 @@
+const securePass = require("../helpers/securePass")
+const User = require("../schemas/usersSchema")
+
 const racers = (req, res) => {
     res.render("racers")
 };
@@ -55,9 +58,39 @@ async function sendRegisterForm(req, res, next) {
     })
   };
 
+//mostramos settings
+async function getSettings(req, res) {
+
+  const user = await User.findById(req.session.user.id).lean()
+  res.render("editUserForm", { user })
+}
+//procesamos el form de settings
+async function sendSettings(req, res) {
+  try {
+    await User.findByIdAndUpdate(req.session.user.id, req.body)
+    res.redirect("/secret")
+  } catch (err) {
+    res.render("editUserForm", { message: "Ocurrió un error, intenta nuevamente" })
+  }
+}
+//borramos un documento de la base de datos
+async function deleteUser(req, res) {
+  try {
+    await User.findByIdAndDelete(req.session.user.id)
+    req.session.destroy()
+    res.redirect("/")
+  } catch (err) {
+    res.render("editUserForm", { message: "Ocurrió un error, intenta nuevamente" })
+  }
+}
+//validate email
+async function validateEmail(req, res) {
+  res.send("email varification in database")
+}
+
 //logout
 function logout(req, res) {
     req.session.destroy()
     res.redirect("/");
 }
-module.exports = {racers, sendLoginForm, getRegisterForm, sendRegisterForm, logout, getLoginForm, teams};
+module.exports = {racers, sendLoginForm, getRegisterForm, sendRegisterForm, logout, getLoginForm, teams, getSettings, sendSettings, deleteUser, validateEmail};
