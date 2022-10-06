@@ -25,7 +25,7 @@ async function sendLoginForm(req, res, next) {
         name: user[0].name,
         lastName: user[0].lastName
       }
-      req.session.user = usr
+      req.session.User = usr
       res.render("secret", { user: `${req.session.user.name} ${req.session.user.lastName}`, id: req.session.user.id })
     } else return res.render("loginForm", { message: "Usuario o contraseña incorrectos" })
     };
