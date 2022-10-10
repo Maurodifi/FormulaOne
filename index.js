@@ -11,11 +11,11 @@ const auth = require("./helpers/auth");
 const app = express();
 
 
-/* app.use(session({
+app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-  })); */
+  })); 
 
 //express-hbs config
 app.engine("hbs", hbs.engine({extname: "hbs"}));
@@ -29,21 +29,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 
 app.get("/", (req, res) =>{
-    res.render("home", /* { user: req.session.user } */) ;
+    res.render("home", { user: req.session.user }  ) ;
 });
 
 app.use("/racers", (req, res) =>{
-    res.render("racers")
+    res.render("racers", { user: req.session.user})
 });
 app.use("/teams", (req, res) =>{
-    res.render("teams")
+    res.render("teams", { user: req.session.user})
 });
 
 app.use("/users", require("./routes/Routes.js"));
 
 app.get("/secret", auth, (req, res) => {
-    res.render("secret", { user: `${req.session.user.name} ${req.session.user.lastName}`, id: req.session.user.id })
-})
+    res.render("secret", { user: `${req.session.user.name} ${req.session.user.lastName}`, id: req.session.user.id })})
 app.listen(3000, err=>{
     !err? log(`Server Running on http://localhost:3000`):
      log(`Se rompio todo`);
