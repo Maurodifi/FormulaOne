@@ -7,9 +7,14 @@ const express = require("express");
 const hbs = require("express-handlebars");
 const session = require("express-session");
 const auth = require("./helpers/auth");
+/*  const cookieParser= require ("cookie-parser") 
+/*const helmet = require("helmet")*/
 
 const app = express();
-
+/*app.use(cookieParser())
+app.use(express.cookieParser())
+app.use(helmet())
+app.use  */
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -29,16 +34,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 
 app.get("/", (req, res) =>{
-    res.render("home", { user: req.session.user }  ) ;
+    res.render("home", {user: req.session.user}) ;
 });
 
-app.use("/racers", (req, res) =>{
-    res.render("racers", { user: req.session.user})
+app.use("/racers", auth, (req, res) =>{
+    res.render("racers", {user: req.session.user})
 });
-app.use("/teams", (req, res) =>{
-    res.render("teams", { user: req.session.user})
+app.use("/teams", auth, (req, res) =>{
+    res.render("teams", {user: req.session.user})
 });
-
 app.use("/users", require("./routes/Routes.js"));
 
 app.get("/secret", auth, (req, res) => {

@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const users = require("../controllers/Controller");
-const auth = require("../helpers/auth")
+const auth = require("../helpers/auth");
 
-router.get("/racers", users.racers);
-router.get("/teams", users.teams);
+
+router.get("/racers", auth, users.racers);
+router.get("/teams", auth, users.teams);
 router.get("/login", users.getLoginForm);
 router.post("/login", users.sendLoginForm);
 router.get("/register", users.getRegisterForm);
