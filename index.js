@@ -36,17 +36,14 @@ app.use(express.urlencoded({ extended: false}));
 app.get("/", (req, res) =>{
     res.render("home", {user: req.session.user}) ;
 });
-
-app.use("/racers", auth, (req, res) =>{
+app.get("/racers", auth, (req, res) =>{
     res.render("racers", {user: req.session.user})
 });
-app.use("/teams", auth, (req, res) =>{
-    res.render("teams", {user: req.session.user})
+app.get("/teams", auth, (req, res) =>{
+    res.render("teams", )
 });
 app.use("/users", require("./routes/Routes.js"));
 
-app.get("/secret", auth, (req, res) => {
-    res.render("secret", { user: `${req.session.user.name} ${req.session.user.lastName}`, id: req.session.user.id })})
 app.listen(3000, err=>{
     !err? log(`Server Running on http://localhost:3000`):
      log(`Se rompio todo`);

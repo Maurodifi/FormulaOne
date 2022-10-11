@@ -2,10 +2,10 @@ const securePass = require("../helpers/securePass")
 const User = require("../schemas/usersSchema")
 
 const racers = (req, res) => {
-    res.render("racers")
+    res.render("racers", {user: req.session.user})
 };
 const teams = (req, res) => {
-  res.render("teams")
+  res.render("teams", {user: req.session.user})
 };
 //mostrar form de login
  function getLoginForm(req, res, next) {

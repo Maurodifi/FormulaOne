@@ -1,31 +1,38 @@
-<div>
-  
-<header class="border-bottom border-end border-3 rounded-2 border-dark p-2">
-    <div class="">
-    <div class="p-0 center">
+<header>
+    <div class="row align-items-start">
+    <div class="col p-0">
       <img class="p-2 me-2" src="https://logodownload.org/wp-content/uploads/2016/11/formula-1-logo-7.png" alt="Logo-f1" width="175px" height="50px">
     </div>
+    <div class="col text-center p-0">
+      <h1 class="col">Formula One</h1>
     </div>
+    <div class="col p-0 d-flex justify-content-end align-self-center ">
+    </div>
+    </div>
+    
 </header>
-
-  <div class="container text-center mx-auto w-25">
-  <div class="row align-items-center" id="navbarNavAltMarkup">
-    <div class="col">
+<div class=" text-center border-top bg-warning bg-opacity-25 ">
+  <div class="" id="navbarNavAltMarkup">
+    <div>
       <a class="nav-link active" aria-current="page" href="/">Home</a>
     </div>
   </div>
-  </div>
+</div>
 
-<div class="row justify-content-center align-items-center vh-100 bg-warning bg-opacity-10">
-        <form action="/users/login" method="POST">
-        <div class="mb-3">
-        <label for="user" class="form-label">Email</label>
-        <input name="email" type="text" class="form-control" id="email" autocomplete="username" autofocus>
-      </div>
-      <div class="mb-3">
-        <label for="pass" class="form-label">Password</label>
-        <input name="pass" type="password" class="form-control" id="pass" autocomplete="current-password">
-      </div>
+<div class=" mh-100 mt-5 row">
+<div class="mx-auto w-50">
+  <div class="text-start display-5 pb-3 text-danger">
+    Log in
+  </div>
+  <form action="/users/login" method="POST" class="border p-4 " >
+    <div class="mb-3">
+      <label for="user" class="form-label">Email</label>
+      <input name="email" type="text" class="form-control" id="email" autocomplete="username" autofocus>
+    </div>
+    <div class="mb-3">
+      <label for="pass" class="form-label">Password</label>
+      <input name="pass" type="password" class="form-control" id="pass" autocomplete="current-password">
+    </div>
       {{#if message}}
       <div class="alert alert-danger d-flex align-items-center" role="alert">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
@@ -40,30 +47,25 @@
       </div>
       {{/if}}
       <div class="d-flex justify-content-between">
-        <input type="submit" class="btn btn-success " value="Log in" />
-        <a class="btn btn-outline-danger me-4 " href="/users/register" role="button">No estas registrado, registrate</a>
-      </div>
+      <input type="submit" class="btn btn-success " value="Log in" />
+      <a class="btn btn-outline-danger me-4 " href="/users/register" role="button">No estas registrado, registrate</a>
     </div>
-    </div>
-    </form>
+  </form>
 </div>
 </div>
-{{!-- <div class="container mt-5 " >
-  <form class="container col-5 py-4 px-4 col-10 col-md-6 col-lg-6 border border-dark">
-    <div class="mb-3">
-      <label for="exampleInputEmail1" class="form-label">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" autofocus>
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="mb-3">
-      <label for="exampleInputPassword1" class="form-label">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1">
-    </div>
-    <div class="mb-3 form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div> --}}
 </div>
+<footer class="container-fluid row border-top position-absolute bottom-0 end-0">
+    <div class="col">
+        <p>Diplomatura de desarrollo web UTN</p>
+        <p>Turno nocturno - Lunes y Miercoles de 19hs a 22hs</p>
+    </div>
+    <div class="col d-flex justify-content-center">
+        <img class="float-center" src="https://www.frba.utn.edu.ar/wp-content/uploads/2016/08/logo-utn.ba-horizontal-e1471367724904.jpg" alt="logo-utn" height="100px">
+    </div>
+    <div class="col text-end p-0">
+        <p class="m-0">Alumno: Mauro Daniel Di Filippo</p>
+        <p class="m-0">DNI: 44544627</p>
+        <p class="m-0">Profesor: Marcelo Bettini</p>
+        <p class="m-0">Ayudante: Brian Galli</p>
+    </div>
+</footer>
