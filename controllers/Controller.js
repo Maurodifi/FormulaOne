@@ -68,7 +68,7 @@ async function sendRegisterForm(req, res, next) {
 async function sendSettings(req, res) {
   try {
     await User.findByIdAndUpdate(req.session.user.id, req.body)
-    res.redirect("/secret")
+    res.redirect("/")
   } catch (err) {
     res.render("editUserForm", { message: "Ocurrió un error, intenta nuevamente" })
   }
