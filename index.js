@@ -7,14 +7,10 @@ const express = require("express");
 const hbs = require("express-handlebars");
 const session = require("express-session");
 const auth = require("./helpers/auth");
-/*  const cookieParser= require ("cookie-parser") 
-/*const helmet = require("helmet")*/
+
 
 const app = express();
-/*app.use(cookieParser())
-app.use(express.cookieParser())
-app.use(helmet())
-app.use  */
+
 
 app.use(session({
     secret: process.env.SESSION_SECRET,

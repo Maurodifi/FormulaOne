@@ -26,7 +26,7 @@ async function sendLoginForm(req, res, next) {
     lastName: user[0].lastName
   }
   req.session.user= usr
-  res.render("home", { user: `${req.session.user.name} ${req.session.user.lastName}`, id: req.session.user.id })
+  res.render("home", { user: req.session.user, id: req.session.user.id })
   } else return res.render("loginForm", { message: "Usuario o contraseña incorrectos" })
   };
 
@@ -50,7 +50,7 @@ async function sendRegisterForm(req, res, next) {
     newUser.save((err) => {
       if (!err) {
         req.session.user = usr
-        res.render("home",{ user: `${req.session.user.name} ${req.session.user.lastName}`, id: req.session.user.id })
+        res.render("home",{ user: req.session.user, id: req.session.user.id })
       } else {
         res.render("registerForm", { message: "Ya existe un registro  con ese email" })
       }
