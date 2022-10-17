@@ -1,5 +1,5 @@
 const securePass = require("../helpers/securePass")
-const User = require("../schemas/usersSchema")
+const User = require("../schemas/usersSchema");
 
 const racers = (req, res) => {
     res.render("racers", {user: req.session.user})
@@ -35,6 +35,9 @@ function getRegisterForm(req, res, next) {
     res.render("registerForm")
 };
 
+//Validaciones
+const { body, validationResult } = require('express-validator'); 
+
 //procesamos el  form de register -> Crear nuevo usuario
 async function sendRegisterForm(req, res, next) {
     const { name, lastName, email, pass } = req.body
@@ -47,12 +50,16 @@ async function sendRegisterForm(req, res, next) {
       name: newUser.name,
       lastName: newUser.lastName
     }
+    const errors = validationResult(req);
+    
     newUser.save((err) => {
-      if (!err) {
+      if (!errors.isEmpty()) {
+        const formData = req.body
+        const arrWarnings = errors.array();
+        res.render("registerForm", {arrWarnings})
+      } else {
         req.session.user = usr
         res.render("home",{ user: req.session.user, id: req.session.user.id })
-      } else {
-        res.render("registerForm", { message: "Ya existe un registro  con ese email" })
       }
     }) 
 
@@ -60,7 +67,6 @@ async function sendRegisterForm(req, res, next) {
 
 //mostramos settings
  async function getSettings(req, res) {
-
   const user = await User.findById(req.session.user.id).lean()
   res.render("editUserForm", { user })
 }

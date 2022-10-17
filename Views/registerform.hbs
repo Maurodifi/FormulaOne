@@ -10,9 +10,10 @@
   <div class="text-center mb-3 fs-2 ">Registrate</div>
   <div class="row ">
       <form class="container col-5 border py-4 px-4 col-10 col-md-6 col-lg-6 rounded bg-light bg-opacity-75" action="/users/register" method="POST">
+        
         <div class="mb-3">
           <label for="name" class="form-label">Nombre</label>
-          <input name="name" type="text" class="form-control" id="name" autocomplete="name" autofocus>
+          <input name="name" type="text" class="form-control" id="name" autocomplete="name" autofocus value="{{formData.name}}">
         </div>
         <div class="mb-3">
           <label for="lastName" class="form-label">Apellido</label>
@@ -45,6 +46,12 @@
       </div>
   </div>
   </form>
+  {{#each arrWarnings}}
+  <div class="row justify-content-center">
+    <span class="text-center border rounded bg-danger">{{msg}}</span>
+  </div>
+  
+  {{/each}}
   </div>
 
 {{>footer}}
