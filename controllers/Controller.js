@@ -52,7 +52,7 @@ async function sendRegisterForm(req, res, next) {
     }
     const errors = validationResult(req);
     
-    newUser.save((err) => {
+    /* newUser.save((err) => {
       if (!errors.isEmpty()) {
         const formData = req.body
         const arrWarnings = errors.array();
@@ -61,7 +61,18 @@ async function sendRegisterForm(req, res, next) {
         req.session.user = usr
         res.render("home",{ user: req.session.user, id: req.session.user.id })
       }
-    }) 
+    })  */
+
+    if (!errors.isEmpty()) {
+      const formData = req.body
+      const arrWarnings = errors.array();
+      res.render("registerForm", {arrWarnings})
+    } else {
+      newUser.save();
+      req.session.user = usr
+      res.render("home",{ user: req.session.user, id: req.session.user.id })
+    }
+
 
   };
 
