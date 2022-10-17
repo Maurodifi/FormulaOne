@@ -9,7 +9,7 @@
 <div class="container mt-5 bgImg ">
   <div class="text-center mb-3 fs-2 ">Registrate</div>
   <div class="row ">
-      <form class="container col-5 border py-4 px-4 col-10 col-md-6 col-lg-6 rounded bg-light bg-opacity-75" action="/users/register" method="POST">
+      <form class="container col-5 border py-4 px-4 col-10 col-md-6 col-lg-6 rounded bg-light bg-opacity-75 mb-4" action="/users/register" method="POST">
         
         <div class="mb-3">
           <label for="name" class="form-label">Nombre</label>
@@ -47,12 +47,12 @@
   </div>
   </form>
   {{#each arrWarnings}}
-  <div class="row justify-content-center">
-    <span class="text-center border rounded bg-danger">{{msg}}</span>
+  <div class="row justify-content-center mt-1">
+    <span  class="alert alert-danger text-center w-25" role="alert">{{msg}}</span>
   </div>
-  
   {{/each}}
   </div>
 
 {{>footer}}
   </div>
+  {{!-- class="w-25 text-center border rounded bg-danger" --}}
