@@ -25,7 +25,7 @@
       <div class="mb-3">
         <label for="name" class="form-label">Nombre</label>
         <input name="name" type="text" class="form-control" id="name" autocomplete="name" value="{{user.name}}">
-      </div>
+        </div>
       <div class="mb-3">
         <label for="lastName" class="form-label">Apellido</label>
         <input name="lastName" type="text" class="form-control" id="lastName" autocomplete="additional-name"
@@ -53,6 +53,11 @@
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar Cuenta</button>
         <a href="/" class="btn btn-warning">Cancelar Cambios</a>
       </div>
+      {{#each arrWarnings}}
+  <div class="row justify-content-center mt-1">
+    <span  class="alert alert-danger text-center w-25" role="alert">{{msg}}</span>
+  </div>
+  {{/each}}
     </form>
     {{!-- delete account confirmation modal --}}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

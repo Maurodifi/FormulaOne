@@ -51,17 +51,6 @@ async function sendRegisterForm(req, res, next) {
       lastName: newUser.lastName
     }
     const errors = validationResult(req);
-    
-    /* newUser.save((err) => {
-      if (!errors.isEmpty()) {
-        const formData = req.body
-        const arrWarnings = errors.array();
-        res.render("registerForm", {arrWarnings})
-      } else {
-        req.session.user = usr
-        res.render("home",{ user: req.session.user, id: req.session.user.id })
-      }
-    })  */
 
     if (!errors.isEmpty()) {
       const formData = req.body
@@ -84,8 +73,15 @@ async function sendRegisterForm(req, res, next) {
 //procesamos el form de settings
 async function sendSettings(req, res) {
   try {
-    await User.findByIdAndUpdate(req.session.user.id, req.body)
-    res.redirect("/")
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const formData = req.body
+      const arrWarnings = errors.array();
+      res.render("editUserForm", {arrWarnings})
+    } else {
+      await User.findByIdAndUpdate(req.session.user.id, req.body)
+      res.redirect("/")
+    }
   } catch (err) {
     res.render("editUserForm", { message: "Ocurrió un error, intenta nuevamente" })
   }
